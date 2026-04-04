@@ -9,6 +9,8 @@ export const api = axios.create({
   withCredentials: true,
 });
 
+console.log("Auth API baseURL:", process.env.REACT_APP_AUTH_API_URL);
+
 // Add a request interceptor to add the auth token to requests
 api.interceptors.request.use(
   (config) => {
