@@ -99,8 +99,13 @@ REACT_APP_CHAT_SOCKET_URL=http://localhost:3004
    ![alt text](image.png)
    - Click on ```ADMIN STUDIO``` and fill details and upload video and upload a jpeg in thumbnail.
    - Once done u will see the video in collections in HOME page.
+   - If u go to S3 then you will find 2 folders, 1 for video and 1 for thumbnail.
+     <img width="2784" height="1210" alt="image" src="https://github.com/user-attachments/assets/ccc80c2c-dc65-440e-99d1-ed1a5155ad6f" />
 
-The compose file provisions MongoDB plus all four Node.js microservices. S3 credentials are optional for local testing—you can still browse seeded metadata, but streaming requires valid S3 objects.
+
+The compose file provisions MongoDB plus all four Node.js microservices. 
+
+S3 credentials are optional for local testing—you can still browse seeded metadata, but streaming requires valid S3 objects.
 
 ## Local Development
 
