@@ -19,17 +19,16 @@ services:
       MONGO_URI: mongodb://mongo:27017/${MONGO_DB:-streamingapp}
       JWT_SECRET: ${JWT_SECRET:-changeme}
       CLIENT_URLS: ${CLIENT_URLS:-http://localhost:3000}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-AKIA6GBMCU7ZBWU33JMG}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-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}
       AWS_REGION: ${AWS_REGION:-ap-south-1}
-      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-saurabh-streaming-app-s3}
     ports:
       - "${AUTH_PORT:-3001}:3001"
 
   streaming:
     build:
-      context: ./backend
-      dockerfile: streamingService/Dockerfile
+      context: ./backend/streamingService
     depends_on:
       - mongo
     environment:
@@ -37,10 +36,10 @@ services:
       MONGO_URI: mongodb://mongo:27017/${MONGO_DB:-streamingapp}
       JWT_SECRET: ${JWT_SECRET:-changeme}
       CLIENT_URLS: ${CLIENT_URLS:-http://localhost:3000}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-AKIA6GBMCU7ZBWU33JMG}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-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}
       AWS_REGION: ${AWS_REGION:-ap-south-1}
-      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-saurabh-streaming-app-s3}
       AWS_CDN_URL: ${AWS_CDN_URL:-}
       STREAMING_PUBLIC_URL: ${STREAMING_PUBLIC_URL:-http://localhost:3002}
     ports:
@@ -48,8 +47,7 @@ services:
 
   admin:
     build:
-      context: ./backend
-      dockerfile: adminService/Dockerfile
+      context: ./backend/adminService
     depends_on:
       - mongo
     environment:
@@ -57,18 +55,18 @@ services:
       MONGO_URI: mongodb://mongo:27017/${MONGO_DB:-streamingapp}
       JWT_SECRET: ${JWT_SECRET:-changeme}
       CLIENT_URLS: ${CLIENT_URLS:-http://localhost:3000}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-AKIA6GBMCU7ZBWU33JMG}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-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}
       AWS_REGION: ${AWS_REGION:-ap-south-1}
-      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-saurabh-streaming-app-s3}
       AWS_CDN_URL: ${AWS_CDN_URL:-}
     ports:
       - "${ADMIN_PORT:-3003}:3003"
 
   chat:
     build:
-      context: ./backend
-      dockerfile: chatService/Dockerfile
+      context: ./backend/chatService
+      dockerfile: Dockerfile
     depends_on:
       - mongo
     environment:
@@ -83,7 +81,7 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_AUTH_API_URL: ${REACT_APP_AUTH_API_URL:-http://localhost:3001/api}
+        REACT_APP_AUTH_API_URL: ${REACT_APP_AUTH_API_URL:-http://localhost:3001/api/auth}
         REACT_APP_STREAMING_API_URL: ${REACT_APP_STREAMING_API_URL:-http://localhost:3002/api}
         REACT_APP_STREAMING_PUBLIC_URL: ${REACT_APP_STREAMING_PUBLIC_URL:-http://localhost:3002}
         REACT_APP_ADMIN_API_URL: ${REACT_APP_ADMIN_API_URL:-http://localhost:3003/api/admin}

@@ -83,6 +83,22 @@ REACT_APP_CHAT_SOCKET_URL=http://localhost:3004
    docker-compose up --build
    ```
 3. Navigate to `http://localhost:3000` for the web app.
+4. To enable ADMIN featured to upload videos do below
+   - Create s3 bucket in same region and provide details in docker compose where it is needed.
+   - Provided the secret key and secret
+   - Run docker-compose build and docker-compose up -d
+   - Create an account (Singup). Then login with the email id provided while signing up.
+   - Go inside the mongo sh container -> docker exec -it 69435d7a32a6 mongosh
+   - run 
+      ```
+      use streamingapp
+      switched to db streamingapp
+      streamingapp> db.users.updateOne({ email: "test@gmail.com" }, { $set: { role: "admin" } });
+      ```
+   - Now you will see ```ADMIN STUDIO``` button on right top beside email id.
+   ![alt text](image.png)
+   - Click on ```ADMIN STUDIO``` and fill details and upload video and upload a jpeg in thumbnail.
+   - Once done u will see the video in collections in HOME page.
 
 The compose file provisions MongoDB plus all four Node.js microservices. S3 credentials are optional for local testing—you can still browse seeded metadata, but streaming requires valid S3 objects.
 
