@@ -117,6 +117,17 @@ cd backend/chatService && npm run dev
 cd frontend && npm start
 ```
 
+Before running k8s files locally make sure u build each image and specially for frontend pass all the environment variables while building image
+docker build \
+  --build-arg REACT_APP_AUTH_API_URL=http://localhost:3001/api \
+  --build-arg REACT_APP_STREAMING_API_URL=http://localhost:3002/api \
+  --build-arg REACT_APP_STREAMING_PUBLIC_URL=http://localhost:3002 \
+  --build-arg REACT_APP_ADMIN_API_URL=http://localhost:3003/api/admin \
+  --build-arg REACT_APP_CHAT_API_URL=http://localhost:3004/api/chat \
+  --build-arg REACT_APP_CHAT_SOCKET_URL=http://localhost:3004 \
+  -t streaming-frontend:latest -f frontend/Dockerfile .
+
+
 ## Feature Highlights
 
 - **S3-backed adaptive streaming** with secure signed uploads for admins.
